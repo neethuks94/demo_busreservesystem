@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List of Bookings</title>
+</head>
+<body>
+    <div>
+        
+       
+            
+{% for message in messages %}
+{% if message.tags %}
+    <div>{{ message }}</div>
+{% endif %}
+{% endfor %}
+            
+
+    
+        <h2>List of Bookings</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>User Name</th>
+                    <th>Bus Name</th>
+                    <th>Source</th>
+                    <th>Destination</th>
+                    <th>Number of Seats</th>
+                    <th>Price</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                {% for row in book_list %}
+                    <tr>
+                        <td>{{ row.id }}</td>
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.bus_name }}</td>
+                        <td>{{ row.source }}</td>
+                        <td>{{ row.dest }}</td>
+                        <td>{{ row.nos }}</td>
+                        <td>{{ row.price }}</td>
+                        <td>{{ row.date }}</td>
+                        <td>{{ row.time }}</td>
+                        <td>{{ row.status }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        
+        <h2>Cancellation Form</h2>
+        <form action="{% url 'cancellings' %}" method="post">
+            {% csrf_token %}
+            <label for="bus_id">Booking ID:</label>
+            <input name="bus_id" type="number" id="bus_id">
+            {% if error %}
+                <div>{{ error }}</div>
+            {% endif %}
+            <button type="submit">Cancel Booking</button>
+        </form>
+    </div>
+</body>
+</html>
+{% endblock %}

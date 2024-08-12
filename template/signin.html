@@ -1,0 +1,94 @@
+{% extends 'base.html' %} 
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Red Bus Reservation - Login</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh; 
+        }
+        .card {
+            width: 80%; 
+            max-width: 400px; 
+            border: 1px solid #ccc;
+            border-radius: 0;
+        }
+        .card-header {
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ccc;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .card-body, .card-footer {
+            padding: 20px;
+        }
+        .form-control {
+            width: 100%; 
+            padding: 8px;
+            text-align: center;
+            margin-bottom: 10px;
+            border: 2px solid #130b0b;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .btn {
+            width: 100%; 
+            padding: 10px;
+            border: none;
+            text-align: center;
+            border-radius: 4px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+        }
+        .form-group {
+            margin-bottom: 30px; 
+            margin-top: 20px;
+            margin-left: 60 px;
+        }
+    
+        .forgot-password {
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body background="static\colorful-travel-illustration_1284-37984.avif">
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Welcome To Red Bus Reservation</h2>
+            </div>
+            <div class="card-body">
+                <form action="{% url 'signin' %}" method="post" id="signin-form">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username"><b>Username:</b></label>
+                        <input name='name' class="form-control" type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><b>Password:</b></label>
+                        <input name='password' class="form-control" type="password" required>
+                    </div>
+                    <p>{{error}}</p>
+                    <button class="btn" form="signin-form">Login</button>
+                    <a href="{% url 'reset'%}"><I><centre>Forgot Password?</centre></I></a><br>
+                </form>
+    
+               
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

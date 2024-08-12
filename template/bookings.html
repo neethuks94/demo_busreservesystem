@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+</head>
+<body>
+    <div >
+        <div >
+            <h3>Your booking has been confirmed!</h3>
+        </div>
+        <div>
+            <form action="{% url 'seebookings' %}" method="post">
+                {% csrf_token %}
+                
+                <button type="submit">OK</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+    <div id="myModal">
+        <div>
+            
+            <div>
+                <h4>Booking Details</h4>
+                
+            </div>
+
+            
+            <div>
+                <ul>
+                    <li><b>Bus name:</b> {{book.bus_name}}</li>
+                    <li><b>Starting point:</b> {{book.source}}</li>
+                    <li><b>Destination point:</b> {{book.dest}}</li>
+                    <li><b>Number of seats:</b> {{book.nos}}</li>
+                    <li><b>Price:</b> {{book.price}}</li>
+                    <li><b>Date:</b> {{book.date}}</li>
+                    <li><b>Time:</b> {{book.time}}</li>
+                </ul>
+            </div>
+
+            
+           
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
